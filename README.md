@@ -20,6 +20,26 @@ Syrup is developed with the mindset that each backend endpoint should define som
 
   The input contract is a set of expected parameters provided by the clients that should conform to some specifications (i.e. list of phone numbers, email, etc.).  If the contract doesn't conform, errors or warnings should be propagated to the user as well as appropriate HTTP response codes.
   
+  Contracts are defined as dictionaries with [ parameter_name, constraints ]
+  The constraints are formatted as a two element list [ type, required/optional ]
+  
+  Required - *
+  Optional - +
+  
+  Available types can be found in validation.py:
+        self.filters["bool"] = validators.StringBoolean()
+        self.filters["url"] = validators.URL()
+        self.filters["id"] = validators.String()
+        self.filters["num"] = validators.Int()
+        self.filters["geo"] = validators.String()
+        self.filters["varchar"] = validators.String()
+        self.filters["timestamp"] = validators.String()
+        self.filters["email"] = validators.Email()
+        self.filters["password"] = validators.String()
+        self.filters["json"] = CustomValidators.JSON()
+        
+   This file also includes an example of the CustomValidators class in which you can extend to create your own parameter_types for which to validate.
+  
 * Output View-Model
 
   The output view-model defines the expected response of the handler.  It is important to log internal errors/warnings/information if this expected view-model does not conform to its expectation.
@@ -27,6 +47,13 @@ Syrup is developed with the mindset that each backend endpoint should define som
 * Syrup Bottler
 
   The syrup bottler is a utility that generates your api documentation.  Simply run the syrup bottler cap from within your /doc or /wiki directory and it will examine all properly formatted SyrupHandlers and generate handlers for each resource type in markdown syntax.
-  
+ 
+## Example
+There is an example under example.py that gives a sample hello, world application implementing the three primary components of syrup as discussed above.
+
+## Roadmap
+1) Clean up the validators
+2) Publish the currently commented web handlers
+3) Create a separate example repo that contains the necessary appengine_config and yaml files to run out-of-the-box
 
   
