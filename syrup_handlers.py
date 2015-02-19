@@ -9,7 +9,6 @@ from syrup_utils import APIUtils
 import config
 from config import OAUTH_ENABLED, DEFAULT_VIEW_MODEL
 
-
 class SyrupAPIHandler(webapp2.RequestHandler):
     def __init__(self, request, response):
         self.initialize(request, response)
