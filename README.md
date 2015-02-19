@@ -22,9 +22,9 @@ Syrup is developed with the mindset that each backend endpoint should define som
   
   Contracts are defined as dictionaries with:
   
-    { 
-        parameter_name: [ type, required/optional ] 
-    }
+        { 
+            parameter_name: [ type, required/optional ] 
+        }
   
   Required - "\*",  Optional - "\+"
   
@@ -52,7 +52,7 @@ Syrup is developed with the mindset that each backend endpoint should define som
   The syrup bottler is a utility that generates your api documentation.  Simply run the syrup bottler cap from within your /doc or /wiki directory and it will examine all properly formatted SyrupHandlers and generate handlers for each resource type in markdown syntax.
  
 ## Example
-There is an example under example.py that gives a sample hello, world application implementing the three primary components of syrup as discussed above.
+There is an example under example.py that gives a sample hello world application implementing the three primary components of syrup as discussed above.
 
 ## Roadmap
 1) Clean up the validators
