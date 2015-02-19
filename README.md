@@ -22,12 +22,11 @@ Syrup is developed with the mindset that each backend endpoint should define som
   
   Contracts are defined as dictionaries with:
   
-        { 
-            parameter_name, [ type, required/optional ] 
-        }
+    { 
+        parameter_name: [ type, required/optional ] 
+    }
   
-  Required - "\*"
-  Optional - "\+"
+  Required - "\*",  Optional - "\+"
   
   Available types can be found in validation.py:
 
