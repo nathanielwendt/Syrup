@@ -21,11 +21,10 @@ Syrup is developed with the mindset that each backend endpoint should define som
   The input contract is a set of expected parameters provided by the clients that should conform to some specifications (i.e. list of phone numbers, email, etc.).  If the contract doesn't conform, errors or warnings should be propagated to the user as well as appropriate HTTP response codes.
   
   Contracts are defined as dictionaries with [ parameter_name, constraints ]
-  
   The constraints are formatted as a two element list [ type, required/optional ]
   
-  Required - \*
-  Optional - \+
+  Required - "\*"
+  Optional - "\+"
   
   Available types can be found in validation.py:
 
@@ -40,7 +39,7 @@ Syrup is developed with the mindset that each backend endpoint should define som
         self.filters["password"] = validators.String()
         self.filters["json"] = CustomValidators.JSON()
         
-   This file also includes an example of the CustomValidators class in which you can extend to create your own parameter_types for which to validate.
+   This file also includes an example of the CustomValidators class in which you can extend to create your own parameter types for which to validate.
   
 * Output View-Model
 
