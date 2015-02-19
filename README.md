@@ -26,7 +26,7 @@ Syrup is developed with the mindset that each backend endpoint should define som
 
 * Syrup Bottler
 
-  The syrup bottler is a utility that resides in your documentation or /wiki folder representating your api documentation.  Simply run the bottler and it will examine all properly formatted SyrupHandlers and generate handlers for each resource type.
+  The syrup bottler is a utility that generates your api documentation.  Simply run the syrup bottler cap from within your /doc or /wiki directory and it will examine all properly formatted SyrupHandlers and generate handlers for each resource type in markdown syntax.
   
 
   
