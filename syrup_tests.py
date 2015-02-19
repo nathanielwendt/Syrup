@@ -38,18 +38,22 @@ class SyrupTest(unittest.TestCase):
         self.restore_patches()
 
     def restore_patches(self):
-        for func_name,func in self.patches.iteritems():
+        for func_name,val in self.patches.iteritems():
+            func = val[0]
+            import_val = val[1]
+            exec(import_val)
             if inspect.isfunction(func):
-                str = func_name + "=staticmethod(self.patches[func_name])"
+                str = func_name + "=staticmethod(self.patches[func_name][0])"
             else:
-                str = func_name + "=self.patches[func_name]"
+                str = func_name + "=self.patches[func_name][0]"
             exec str
 
     #Patches a method for use in a single test only, restores the state of the patch in tearDown
     # example self.patch('external.MyModule.myfunction', 'myfunction_mock')
-    def patch(self, function_name, replacement_name):
+    def patch(self, import_val, function_name, replacement_name):
+        exec(import_val)
         func = eval(function_name)
-        self.patches[function_name] = func
+        self.patches[function_name] = [func,import_val]
         if inspect.isfunction(func):
             str = function_name + "=staticmethod(" + replacement_name + ")"
         else:

@@ -13,6 +13,15 @@ class CustomValidators(object):
             validator = validators.PhoneNumber()
             return validator.to_python(entry)
 
+    class JSON(object):
+        def to_python(self, entry):
+            try:
+                as_json = json.loads(entry)
+                return as_json
+            except ValueError:
+                raise lib.formencode.Invalid("not valid json", entry, "json validator")
+
+
 class CustomValidatorException(BaseException):
     def __init__(self, message):
         self.message = message
@@ -36,6 +45,7 @@ class Filter():
         self.filters["timestamp"] = validators.String()
         self.filters["email"] = validators.Email()
         self.filters["password"] = validators.String()
+        self.filters["json"] = CustomValidators.JSON()
 
     #Use to add a filter item
     def add_filter(self, name, filter_func):
@@ -57,19 +67,35 @@ class Filter():
             index = filter_type.find("_")
             filter_type = filter_type[0:index]
             entries = json.loads(value)
-        elif "tuple" in filter_type:
-            index = filter_type.find("_")
-            filter_type = filter_type[0:index]
+            for entry in entries:
+                self.check_value(name, filter_type, entry, required)
+            return json.loads(value)
+        # elif "tuple" in filter_type:
+        #     index = filter_type.find("_")
+        #     filter_type = filter_type[0:index]
         else:
-            entries = [value]
+            return self.check_value(name, filter_type, value, required)
 
         # Loop through items in case it is a list
-        for entry in entries:
-            try:
-                return self.filters[filter_type].to_python(entry)
-            except lib.formencode.Invalid, e:
-                if required and name not in self.violations:
-                    self.violations[name] = filter_type
-                elif not required and name not in self.warnings:
-                    self.warnings[name] = filter_type
-                return None
+        # for entry in entries:
+        #     try:
+        #         return self.filters[filter_type].to_python(entry)
+        #     except lib.formencode.Invalid, e:
+        #         if required and name not in self.violations:
+        #             self.violations[name] = filter_type
+        #         elif not required and name not in self.warnings:
+        #             self.warnings[name] = filter_type
+        #         return None
+
+    def check_value(self, name, filter_type, entry, required):
+        try:
+            if required:
+                if entry is None or entry == "":
+                    raise lib.formencode.Invalid("entry was included, but empty", None, None)
+            return self.filters[filter_type].to_python(entry)
+        except lib.formencode.Invalid, e:
+            if required and name not in self.violations:
+                self.violations[name] = filter_type
+            elif not required and name not in self.warnings:
+                self.warnings[name] = filter_type
+            return None

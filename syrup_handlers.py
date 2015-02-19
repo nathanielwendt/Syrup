@@ -2,8 +2,8 @@ import json
 from lib.oauthlib.common import Request as OAuth1Request
 from lib.oauthlib.oauth1 import Client,SIGNATURE_TYPE_BODY
 import view_models
-from webapp2_extras import jinja2
 from appengine_config import jinja_environment
+from webapp2_extras import jinja2
 import validation
 import webapp2
 from syrup_utils import APIUtils
@@ -57,7 +57,8 @@ class SyrupAPIHandler(webapp2.RequestHandler):
         if self.view_model:
             def verify_true_action(exp, printout):
                 if not exp:
-                    APIUtils.Log.create_entry("Outgoing Contract [" + self.__class__.__name__ + "]", printout)
+                    print "Outgoing Contract [" + self.__class__.__name__ + "]", printout
+                    #APIUtils.Log.create_entry("Outgoing Contract [" + self.__class__.__name__ + "]", printout)
 
             APIUtils.check_contract_conforms(self.view_model, self.api_response, verify_true_action)
 
@@ -123,6 +124,10 @@ class SyrupAPIHandler(webapp2.RequestHandler):
 
 
 class SyrupSecureAPIHandler(SyrupAPIHandler):
+    def abort(self, code, *args, **kwargs):
+        print code, " >> ", args[0]
+        super(SyrupAPIHandler, self).abort(code, *args, **kwargs)
+
     def dispatch(self):
         if OAUTH_ENABLED:
             method = self.request.method
