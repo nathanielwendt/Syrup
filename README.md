@@ -56,7 +56,9 @@ There is an example under example.py that gives a sample hello world application
 
 ## Roadmap
 1) Clean up the validators
+
 2) Publish the currently commented web handlers
+
 3) Create a separate example repo that contains the necessary appengine_config and yaml files to run out-of-the-box
 
   
