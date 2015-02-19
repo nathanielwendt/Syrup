@@ -1,5 +1,5 @@
 import webapp2
-from syrup_handlers import SyrupAPIHandler, SyrupAPIException
+from syrup_handlers import SyrupSecureAPIHandler, SyrupAPIException
 
 # Definition of view models.  This is typically defined in a view_models.py file
 # The view_models class here simply represents the module specification you would
@@ -26,7 +26,7 @@ class view_models():
             }
 
 
-class MessageHelloHandler(SyrupAPIHandler):
+class MessageHelloHandler(SyrupSecureAPIHandler):
     def get(self):
         """
         This handler returns a welcome message to someone's name
