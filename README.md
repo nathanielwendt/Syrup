@@ -47,9 +47,9 @@ Syrup is developed with the mindset that each backend endpoint should define som
 
   The output view-model defines the expected response of the handler.  It is important to log internal errors/warnings/information if this expected view-model does not conform to its expectation.
 
-* Syrup Bottler
+* Syrup Bottler (Documentation)
 
-  The syrup bottler is a utility that generates your api documentation.  Simply run the syrup bottler cap from within your /doc or /wiki directory and it will examine all properly formatted SyrupHandlers and generate handlers for each resource type in markdown syntax.
+  The syrup bottler is a utility that generates your api documentation.  Simply run the syrup bottler cap from within your /doc or /wiki directory and it will examine all properly formatted SyrupHandlers and generate handlers for each resource type in markdown syntax. You can see an example of the generated documentation by viewing the Message-API.md file in the root of this project.
  
 ## Example
 There is an example under example.py that gives a sample hello world application implementing the three primary components of syrup as discussed above.
