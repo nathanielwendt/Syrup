@@ -1,5 +1,4 @@
-import lib.formencode
-from lib.formencode import validators
+from lib.formencode import validators, Invalid
 import urllib
 from syrup_utils import APIUtils
 import json
@@ -19,7 +18,7 @@ class CustomValidators(object):
                 as_json = json.loads(entry)
                 return as_json
             except ValueError:
-                raise lib.formencode.Invalid("not valid json", entry, "json validator")
+                raise Invalid("not valid json", entry, "json validator")
 
 
 class CustomValidatorException(BaseException):
@@ -91,9 +90,9 @@ class Filter():
         try:
             if required:
                 if entry is None or entry == "":
-                    raise lib.formencode.Invalid("entry was included, but empty", None, None)
+                    raise Invalid("entry was included, but empty", None, None)
             return self.filters[filter_type].to_python(entry)
-        except lib.formencode.Invalid, e:
+        except Invalid, e:
             if required and name not in self.violations:
                 self.violations[name] = filter_type
             elif not required and name not in self.warnings:

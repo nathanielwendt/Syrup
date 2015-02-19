@@ -1,10 +1,11 @@
 import re
 import inspect
 import pprint
+import config
 
 def main(settings):
     api_docs = create_docs(settings["project_routes"],settings["debug"],
-                           settings["view_models"], settings["default_view_model"])
+                           settings["view_models"])
     write_docs(api_docs, settings["wiki_path"])
 
 class AutoDocException(BaseException):
@@ -119,7 +120,8 @@ def merge(req_contract, comments):
         merge[req_param] = entry
     return merge
 
-def create_docs(routes, debug_mode, view_models, default_view_model):
+def create_docs(routes, debug_mode, view_models):
+    default_view_model = config.DEFAULT_VIEW_MODEL
     api_docs = {}
     for route in routes:
         if debug_mode:
