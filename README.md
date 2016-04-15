@@ -2,7 +2,7 @@
 Microframework built on Webapp2 for rapidly developing RESTful backends on Python AppEngine
 
 ## About
-Syrup is a project born from my experience developing several Python AppEngine backends from scratch.  I wanted a faster way to create endpoints that validated inputs and outpus and could generate documentation automatically. 
+Syrup is a project born from my experience developing several Python AppEngine backends from scratch.  I wanted a faster way to create endpoints that validated inputs and outputs and could generate documentation automatically. 
 
 ## Use
 Clone the repo into some /libs directory in your AppEngine project.  Syrup will be ready to go with a simple import such as
