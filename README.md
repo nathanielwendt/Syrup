@@ -16,7 +16,7 @@ Clone the repo into some /libs directory in your AppEngine project.  Syrup will 
 ## Philosophy
 Syrup is developed with the mindset that each backend endpoint should define some input contract and some output view-model.  Additionally, the backend should be documented in a way that the internal documentation should automatically drive some external generation of API docs for the backend system (called Syrup Bottling).  The image below shows a general outline of what Syrup does.
 
-![Syrup Model](www.nathanielwendt.com/content/images/2016/04/Screen-Shot-2016-04-15-at-5-09-32-PM.png)
+![Syrup Model](http://www.nathanielwendt.com/content/images/2016/04/Screen-Shot-2016-04-15-at-5-09-32-PM.png)
 
 * Input Contract
 
